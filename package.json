@@ -1,0 +1,17 @@
+{
+  "name": "mjpeg-server",
+  "version": "0.1.0",
+  "author": "Brandon Cheng <gluxon@gluxon.com>",
+  "description": "Serve multiple jpgs as an mjpeg stream",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gluxon/node-mjpeg-server.git"
+  },
+  "main": "./lib/mpegserver",
+  "dependencies" : {
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8"
+  }
+}
