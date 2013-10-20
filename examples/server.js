@@ -1,22 +1,30 @@
+var http = require('http');
 var fs = require('fs');
-var mjpegServer = (require('..'));
+var mjpegServer = require('..');
 
-var server = mjpegServer.createServer(8081);
+http.createServer(function(req, res) {
+	console.log("Got request");
 
-var i = 0;
+	mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
-server.on('request', function() {
-  var timer = setInterval(updateJPG(timer), 100);
-});
+	var i = 0;
+	var timer = setInterval(updateJPG, 50);
 
-function updateJPG(timer) {
-  fs.readFile(__dirname + '/resources/' + i + '.jpg', function(err, data) {
-    server.update(data);
+	function updateJPG() {
+		fs.readFile(__dirname + '/resources/'+ i + '.jpg', sendJPGData);
+		i++;
+	}
 
-    if (i == 100) {
-      clearInterval(timer);
-      server.close();
-    }
-  });
-  i++;
-}
+	function sendJPGData(err, data) {
+		mjpegReqHandler.update(data);
+		checkIfFinished();
+	}
+
+	function checkIfFinished() {
+		if (i > 100) {
+			clearInterval(timer);
+			mjpegReqHandler.close();
+			console.log('End Request');
+		}
+	}
+}).listen(8081);
