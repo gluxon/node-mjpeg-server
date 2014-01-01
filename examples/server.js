@@ -3,28 +3,28 @@ var fs = require('fs');
 var mjpegServer = require('..');
 
 http.createServer(function(req, res) {
-	console.log("Got request");
+  console.log("Got request");
 
-	mjpegReqHandler = mjpegServer.createReqHandler(req, res);
+  mjpegReqHandler = mjpegServer.createReqHandler(req, res);
 
-	var i = 0;
-	var timer = setInterval(updateJPG, 50);
+  var i = 0;
+  var timer = setInterval(updateJPG, 50);
 
-	function updateJPG() {
-		fs.readFile(__dirname + '/resources/'+ i + '.jpg', sendJPGData);
-		i++;
-	}
+  function updateJPG() {
+    fs.readFile(__dirname + '/resources/'+ i + '.jpg', sendJPGData);
+    i++;
+  }
 
-	function sendJPGData(err, data) {
-		mjpegReqHandler.update(data);
-		checkIfFinished();
-	}
+  function sendJPGData(err, data) {
+    mjpegReqHandler.update(data);
+    checkIfFinished();
+  }
 
-	function checkIfFinished() {
-		if (i > 100) {
-			clearInterval(timer);
-			mjpegReqHandler.close();
-			console.log('End Request');
-		}
-	}
+  function checkIfFinished() {
+    if (i > 100) {
+      clearInterval(timer);
+      mjpegReqHandler.close();
+      console.log('End Request');
+    }
+  }
 }).listen(8081);
