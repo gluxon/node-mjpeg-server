@@ -16,8 +16,9 @@ http.createServer(function(req, res) {
   }
 
   function sendJPGData(err, data) {
-    mjpegReqHandler.update(data);
-    checkIfFinished();
+    mjpegReqHandler.write(data, function() {
+      checkIfFinished();
+    });
   }
 
   function checkIfFinished() {

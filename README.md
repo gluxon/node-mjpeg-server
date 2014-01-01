@@ -29,3 +29,8 @@ mjpegReqHandler.update(randomJpeg37);
 ### mjpegServer.close()
 
 Calls res.end
+
+## Changelog
+
+#### 0.3
+- Use streams2 in Node.js v.10
