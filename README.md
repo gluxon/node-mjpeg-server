@@ -1,4 +1,4 @@
-# mpeg-server
+# mjpeg-server
 
 Serve an mjpeg stream on a specified port through HTTP from multiple jpgs.
 
