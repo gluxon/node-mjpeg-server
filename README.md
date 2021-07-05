@@ -32,5 +32,8 @@ Calls res.end
 
 ## Changelog
 
+#### 0.3.1
+- Fixed a deprecation warning in Node.js 16.x due to a typo in the `package.json` `main` field.
+
 #### 0.3
 - Use streams2 in Node.js v.10
