@@ -7,7 +7,6 @@
     "type": "git",
     "url": "https://github.com/gluxon/node-mjpeg-server.git"
   },
-  "main": "./lib/mpegserver",
   "dependencies" : {
   },
   "license": "MIT",
